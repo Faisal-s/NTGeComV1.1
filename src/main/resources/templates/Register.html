@@ -10,38 +10,38 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Employee Management System</h1>
+<!--		<h1>Customer Management System</h1>-->
 		<hr>
-		<h2>Save Employee</h2>
+		<h2>Save Customer</h2>
 
-		<form action="#" th:action="@{/saveUser}" th:object="${user}"
+		<form action="#" th:action="@{/saveUser1}" th:object="${user}"
 			method="POST">
+			<h6>First Name</h6>
 			<input type="text" th:field="*{firstName}"
-				placeholder="Employee First Name" class="form-control mb-4 col-4">
-				
-				<input type="text" th:field="*{lastName}"
-				placeholder="Employee Last Name" class="form-control mb-4 col-4">
-				
-				<input type="text" th:field="*{email}"
-				placeholder="Employee Email" class="form-control mb-4 col-4">
-
+				 class="form-control mb-4 col-4">
+			<h6>Last Name</h6>
+			<input type="text" th:field="*{lastName}"
+				class="form-control mb-4 col-4">
+			<h6>Email</h6>
+			<input type="text" th:field="*{email}"
+				class="form-control mb-4 col-4">
+			<h6>Password</h6>
 			<input type="text" th:field="*{password}"
-				   placeholder="Employee Email" class="form-control mb-4 col-4">
-
+				   class="form-control mb-4 col-4">
+			<h6>Phone Number</h6>
 			<input type="text" th:field="*{phone}"
-				   placeholder="Employee Email" class="form-control mb-4 col-4">
-
-
+				   class="form-control mb-4 col-4">
+			<h6>Store Name</h6>
 			<input type="text" th:field="*{store_name}"
-				   placeholder="Employee Email" class="form-control mb-4 col-4">
+				   class="form-control mb-4 col-4">
 
 
-				<button type="submit" class="btn btn-info col-2"> Save Employee</button>
+				<button type="submit" class="btn btn-info col-2"> Save Customer</button>
 		</form>
 		
 		<hr>
 		
-		<a th:href = "@{/}"> Back to Employee List</a>
+		<a th:href = "@{/home}"> Back to Customer List</a>
 	</div>
 </body>
 </html>

@@ -24,9 +24,14 @@ public class UserController {
 	// display list of users
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
-		return findPaginated(1, "firstName", "asc", model);		
+		return "index";
 	}
-	
+
+	@GetMapping("/home")
+	public String homePage(Model model ){
+		return findPaginated(1, "firstName", "asc", model);
+	}
+
 	@GetMapping("/Register")
 	public String showNewUserForm(Model model) {
 		// create model attribute to bind form data
@@ -39,7 +44,14 @@ public class UserController {
 	public String saveUser(@ModelAttribute("user") User user) {
 		// save user to database
 		userService.saveUser(user);
-		return "redirect:/";
+		return "redirect:/login";
+	}
+
+	@PostMapping("/saveUser1")
+	public String saveUser1(@ModelAttribute("user") User user) {
+		// save user to database
+		userService.saveUser(user);
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/showFormForUpdate/{id}")
@@ -58,7 +70,7 @@ public class UserController {
 		
 		// call delete user method
 		this.userService.deleteUserById(id);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	
@@ -81,6 +93,34 @@ public class UserController {
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listEmployees", user);
-		return "index";
+		return "addUsers";
 	}
+
+	@GetMapping("/login")
+	public String showLoginForm(Model model) {
+
+		User user = new User();
+		model.addAttribute("user", user);
+		return "login";
+	}
+
+	@PostMapping("/UserLogin")
+	public String LoginData(Model model ,  @ModelAttribute("user") User users) {
+		List<User> AllAdmin = userService.getAllUsers();
+		for (User admin:
+				AllAdmin) {
+			if(admin.getEmail().equals(users.getEmail()) && admin.getPassword().equals(users.getPassword()) ){
+				return "redirect:/dashboard";
+			}
+
+		}
+
+		User user = new User();
+		model.addAttribute("user", user);
+
+
+
+		return "Register";
+	}
+
 }
