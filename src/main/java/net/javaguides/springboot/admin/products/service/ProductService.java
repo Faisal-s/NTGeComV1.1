@@ -1,6 +1,6 @@
-package net.javaguides.springboot.products.service;
+package net.javaguides.springboot.admin.products.service;
 
-import net.javaguides.springboot.products.model.Product;
+import net.javaguides.springboot.admin.products.model.Product;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

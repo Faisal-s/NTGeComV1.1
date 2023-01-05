@@ -1,8 +1,8 @@
-package net.javaguides.springboot.products.controller;
+package net.javaguides.springboot.admin.products.controller;
 
 
-import net.javaguides.springboot.products.model.Product;
-import net.javaguides.springboot.products.service.ProductService;
+import net.javaguides.springboot.admin.products.model.Product;
+import net.javaguides.springboot.admin.products.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class ProductController {
 		// create model attribute to bind form data
 		Product product = new Product();
 		model.addAttribute("product", product);
-		return "products/create";
+		return "admin/products/create";
 	}
 	
 	@PostMapping("/products/saveProduct")
@@ -48,7 +48,7 @@ public class ProductController {
 		
 		// set product as a model attribute to pre-populate the form
 		model.addAttribute("product", product);
-		return "products/edit";
+		return "admin/products/edit";
 	}
 	
 	@GetMapping("/products/deleteProduct/{id}")
@@ -79,6 +79,6 @@ public class ProductController {
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listProducts", product);
-		return "products/index";
+		return "admin/products/index";
 	}
 }

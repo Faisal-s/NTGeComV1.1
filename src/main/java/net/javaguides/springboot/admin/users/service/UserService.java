@@ -1,10 +1,10 @@
-package net.javaguides.springboot.service;
+package net.javaguides.springboot.admin.users.service;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-import net.javaguides.springboot.model.User;
+import net.javaguides.springboot.admin.users.model.User;
 
 public interface UserService {
 	List<User> getAllUsers();

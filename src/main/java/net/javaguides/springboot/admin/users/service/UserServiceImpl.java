@@ -1,9 +1,9 @@
-package net.javaguides.springboot.service;
+package net.javaguides.springboot.admin.users.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import net.javaguides.springboot.model.User;
+import net.javaguides.springboot.admin.users.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import net.javaguides.springboot.repository.UserRepository;
+import net.javaguides.springboot.admin.users.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {

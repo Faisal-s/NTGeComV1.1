@@ -1,4 +1,4 @@
-package net.javaguides.springboot.model;
+package net.javaguides.springboot.admin.users.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +24,9 @@ public class  User {
 	@Column(name = "email")
 	private String email;
 
+	@Column(name = "gender")
+	private String gender;
+
 	@Column(name = "phone")
 	private long phone;
 
@@ -32,6 +35,21 @@ public class  User {
 
 	@Column(name = "password")
 	private String password;
+
+
+	public User() {
+	}
+
+	public User(long id, String firstName, String lastName, String email, String gender, long phone, String store_name, String password) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.gender = gender;
+		this.phone = phone;
+		this.store_name = store_name;
+		this.password = password;
+	}
 
 
 
@@ -80,5 +98,13 @@ public class  User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 }

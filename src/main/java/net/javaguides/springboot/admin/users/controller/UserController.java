@@ -1,7 +1,9 @@
-package net.javaguides.springboot.controller;
+package net.javaguides.springboot.admin.users.controller;
 
 import java.util.List;
 
+import net.javaguides.springboot.admin.users.model.User;
+import net.javaguides.springboot.admin.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -11,9 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import net.javaguides.springboot.model.User;
-import net.javaguides.springboot.service.UserService;
 
 @Controller
 public class UserController {
@@ -37,7 +36,7 @@ public class UserController {
 		// create model attribute to bind form data
 		User user = new User();
 		model.addAttribute("user", user);
-		return "Register";
+		return "admin/customers/Register";
 	}
 	
 	@PostMapping("/saveUser")
@@ -62,7 +61,7 @@ public class UserController {
 		
 		// set user as a model attribute to pre-populate the form
 		model.addAttribute("user", user);
-		return "update_profile";
+		return "admin/customers/update_profile";
 	}
 	
 	@GetMapping("/deleteUser/{id}")
@@ -93,7 +92,7 @@ public class UserController {
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		
 		model.addAttribute("listEmployees", user);
-		return "addUsers";
+		return "admin/customers/addUsers";
 	}
 
 	@GetMapping("/login")
@@ -120,7 +119,7 @@ public class UserController {
 
 
 
-		return "Register";
+		return "admin/customers/Register";
 	}
 
 }

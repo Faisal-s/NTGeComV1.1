@@ -1,4 +1,4 @@
-package net.javaguides.springboot.products.model;
+package net.javaguides.springboot.admin.products.model;
 
 import javax.persistence.*;
 import java.util.Date;
