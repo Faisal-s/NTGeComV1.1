@@ -1,5 +1,7 @@
 package net.javaguides.springboot.admin.products.model;
 
+import net.javaguides.springboot.admin.categories.model.Category;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -35,10 +37,14 @@ public class Product {
 	@Column(name = "cost")
 	private int cost;
 
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category categoryId;
+
 	public Product() {
 	}
 
-	public Product(long id, String sku, String name, String description, long userId, Date createdAt, Date updatedAt, int price, int cost) {
+	public Product(long id, String sku, String name, String description, long userId, Date createdAt, Date updatedAt, int price, int cost, Category categoryId) {
 		this.id = id;
 		this.sku = sku;
 		this.name = name;
@@ -48,6 +54,7 @@ public class Product {
 		this.updatedAt = updatedAt;
 		this.price = price;
 		this.cost = cost;
+		this.categoryId = categoryId;
 	}
 
 	public long getId() {
@@ -120,5 +127,13 @@ public class Product {
 
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+
+	public Category getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Category categoryId) {
+		this.categoryId = categoryId;
 	}
 }

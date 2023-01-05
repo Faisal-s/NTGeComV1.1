@@ -13,11 +13,11 @@ public class adminRoute {
 
 
 
-    @GetMapping("/products/create")
-    public String showNewProductForm(Model model) {
-        // create model attribute to bind form data
-        Product product = new Product();
-        model.addAttribute("product", product);
-        return "products/create";
-    }
+//    @GetMapping("/products/create")
+//    public String showNewProductForm(Model model) {
+//        // create model attribute to bind form data
+//        Product product = new Product();
+//        model.addAttribute("product", product);
+//        return "products/create";
+//    }
 }

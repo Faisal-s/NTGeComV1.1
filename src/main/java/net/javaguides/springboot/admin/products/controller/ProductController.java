@@ -1,12 +1,15 @@
 package net.javaguides.springboot.admin.products.controller;
 
 
+import net.javaguides.springboot.admin.categories.model.Category;
+import net.javaguides.springboot.admin.categories.service.CategoryService;
 import net.javaguides.springboot.admin.products.model.Product;
 import net.javaguides.springboot.admin.products.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +19,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
+//	@Autowired
+//	private CategoryService categoryService;
 	
 	// display list of products
 	@GetMapping("/products")
@@ -24,10 +30,14 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/create")
-	public String showNewProductForm(Model model) {
+	public String showNewProductForm(ModelMap model) {
 		// create model attribute to bind form data
 		Product product = new Product();
 		model.addAttribute("product", product);
+
+
+//		List<Category> category = categoryService.getAllCategories();
+//		model.addAttribute("category", category);
 		return "admin/products/create";
 	}
 	
