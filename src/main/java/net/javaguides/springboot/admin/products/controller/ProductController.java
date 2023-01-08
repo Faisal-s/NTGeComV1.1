@@ -20,8 +20,8 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-//	@Autowired
-//	private CategoryService categoryService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	// display list of products
 	@GetMapping("/products")
@@ -36,8 +36,8 @@ public class ProductController {
 		model.addAttribute("product", product);
 
 
-//		List<Category> category = categoryService.getAllCategories();
-//		model.addAttribute("category", category);
+		List<Category> category = categoryService.getAllCategories();
+		model.addAttribute("category", category);
 		return "admin/products/create";
 	}
 	
@@ -51,13 +51,21 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/showFormForUpdateProduct/{id}")
-	public String showFormForUpdateProduct(@PathVariable ( value = "id") long id, Model model) {
+	public String showFormForUpdateProduct(@PathVariable ( value = "id") long id, ModelMap	 model) {
 		
 		// get product from the service
 		Product product = productService.getProductById(id);
 		
 		// set product as a model attribute to pre-populate the form
 		model.addAttribute("product", product);
+
+		List<Category> category = categoryService.getAllCategories();
+		model.addAttribute("category", category);
+
+		if(product.getCategoryId() != null){
+			Category oldCat = categoryService.getCategoryById(product.getCategoryId().getId());
+			model.addAttribute("oldCat", oldCat);
+		}
 		return "admin/products/edit";
 	}
 	

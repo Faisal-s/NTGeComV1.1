@@ -16,8 +16,7 @@
 
   <form action="#" th:action="@{/products/saveProduct}" th:object="${product}"
         method="POST">
-<!--    <input type="text" th:field="*{firstName}"-->
-<!--           placeholder="Employee First Name" class="form-control mb-4 col-4">-->
+
       <h6>Product Name</h6>
     <input type="text" th:field="*{name}"
            class="form-control mb-4 col-4">
@@ -32,17 +31,12 @@
              class="form-control mb-4 col-4">
 
 
+          <h6>Product Category</h6>
 
-
-<!--    <input type="text" th:field="*{password}"-->
-<!--           placeholder="Employee Email" class="form-control mb-4 col-4">-->
-
-<!--    <input type="text" th:field="*{phone}"-->
-<!--           placeholder="Employee Email" class="form-control mb-4 col-4">-->
-
-
-<!--    <input type="text" th:field="*{store_name}"-->
-<!--           placeholder="Employee Email" class="form-control mb-4 col-4">-->
+            <select th:field="*{categoryId}">
+                    <option value="default">Select a category</option>
+                    <option th:each="cat : ${category}" th:value="${cat.id}"th:text="${cat.name}"/>
+            </select>
 
 
     <button type="submit" class="btn btn-info col-2"> Save Product</button>
