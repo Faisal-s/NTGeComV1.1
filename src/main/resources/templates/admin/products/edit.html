@@ -29,7 +29,8 @@
       <h6>Product Category</h6>
 
       <select th:field="*{categoryId}">
-          <option value="default" th:if="${oldCat == null}">Select a category</option>
+          <option value="" >Select a category</option>
+<!--        <option value="" th:unless="${oldCat == null}">Select a category</option>-->
           <option th:each="cat : ${category}" th:value="${cat.id}"th:text="${cat.name}"/>
       </select>
 
