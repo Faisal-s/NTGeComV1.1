@@ -12,33 +12,27 @@
   <h1>Edit Product</h1>
   <hr>
   <h2>Update Product</h2>
-
   <form action="#" th:action="@{/products/saveProduct}" th:object="${product}"
         method="POST">
-
     <input type="hidden" th:field="*{id}" />
-
+    <h6>Product Name</h6>
     <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
-
+    <h6>Product Description</h6>
     <input type="text" th:field="*{description}" class="form-control mb-4 col-4">
-
+    <h6>Product Price</h6>
     <input type="number" th:field="*{price}" class="form-control mb-4 col-4">
-
+    <h6>Product Cost</h6>
     <input type="number" th:field="*{cost}" class="form-control mb-4 col-4">
-
       <h6>Product Category</h6>
-
-      <select th:field="*{categoryId}">
+      <select th:field="*{categoryId}" class="btn btn-outline-info">
           <option value="" >Select a category</option>
 <!--        <option value="" th:unless="${oldCat == null}">Select a category</option>-->
           <option th:each="cat : ${category}" th:value="${cat.id}"th:text="${cat.name}"/>
       </select>
-
+    <br class="mb-4">
     <button type="submit" class="btn btn-info col-2"> Update Products</button>
   </form>
-
   <hr>
-
   <a th:href = "@{/products}"> Back to Products List</a>
 </div>
 </body>

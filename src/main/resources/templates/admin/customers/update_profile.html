@@ -9,13 +9,11 @@
 </head>
 <body>
 	<div class="container">
-
 		<hr>
 		<h2>Update Customer</h2>
 
 		<form action="#" th:action="@{/saveUser1}" th:object="${user}"
 			method="POST">
-			
 			<!-- Add hidden form field to handle update -->
 			<input type="hidden" th:field="*{id}" />
 			
@@ -27,9 +25,7 @@
 				
 				<button type="submit" class="btn btn-info col-2"> Update Customer</button>
 		</form>
-		
 		<hr>
-		
 		<a th:href = "@{/home}"> Back to Customer List</a>
 	</div>
 </body>

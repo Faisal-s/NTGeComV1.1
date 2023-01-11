@@ -45,7 +45,6 @@ public class ProductController {
 	public String saveProduct(@ModelAttribute("product") Product product) {
 		// save product to database
 
-
 		productService.saveProduct(product);
 		return "redirect:/products";
 	}

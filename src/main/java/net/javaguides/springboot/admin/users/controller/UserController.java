@@ -22,12 +22,12 @@ public class UserController {
 	
 	// display list of users
 	@GetMapping("/")
-	public String viewHomePage(Model model) {
+	public String viewcustomersPage(Model model) {
 		return "index";
 	}
 
-	@GetMapping("/home")
-	public String homePage(Model model ){
+	@GetMapping("/customers")
+	public String customersPage(Model model ){
 		return findPaginated(1, "firstName", "asc", model);
 	}
 
@@ -50,7 +50,7 @@ public class UserController {
 	public String saveUser1(@ModelAttribute("user") User user) {
 		// save user to database
 		userService.saveUser(user);
-		return "redirect:/home";
+		return "redirect:/customers";
 	}
 	
 	@GetMapping("/showFormForUpdate/{id}")
@@ -69,30 +69,25 @@ public class UserController {
 		
 		// call delete user method
 		this.userService.deleteUserById(id);
-		return "redirect:/home";
+		return "redirect:/customers";
 	}
-	
-	
+
 	@GetMapping("/page/{pageNo}")
 	public String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
 			@RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir,
 			Model model) {
 		int pageSize = 5;
-		
 		Page<User> page = userService.findPaginated(pageNo, pageSize, sortField, sortDir);
 		List<User> user = page.getContent();
-		
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
-		
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-		
 		model.addAttribute("listEmployees", user);
-		return "admin/customers/addUsers";
+		return "admin/customers/index";
 	}
 
 	@GetMapping("/login")
@@ -111,15 +106,9 @@ public class UserController {
 			if(admin.getEmail().equals(users.getEmail()) && admin.getPassword().equals(users.getPassword()) ){
 				return "redirect:/dashboard";
 			}
-
 		}
-
 		User user = new User();
 		model.addAttribute("user", user);
-
-
-
 		return "admin/customers/Register";
 	}
-
 }

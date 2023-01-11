@@ -24,8 +24,8 @@ public class  User {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "gender")
-	private String gender;
+//	@Column(name = "gender")
+//	private String gender;
 
 	@Column(name = "phone")
 	private long phone;
@@ -37,19 +37,19 @@ public class  User {
 	private String password;
 
 
-	public User() {
-	}
+//	public User() {
+//	}
 
-	public User(long id, String firstName, String lastName, String email, String gender, long phone, String store_name, String password) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.gender = gender;
-		this.phone = phone;
-		this.store_name = store_name;
-		this.password = password;
-	}
+//	public User(long id, String firstName, String lastName, String email, String gender, long phone, String store_name, String password) {
+//		this.id = id;
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.email = email;
+//		this.gender = gender;
+//		this.phone = phone;
+//		this.store_name = store_name;
+//		this.password = password;
+//	}
 
 
 
@@ -100,11 +100,11 @@ public class  User {
 		this.email = email;
 	}
 
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+//	public String getGender() {
+//		return gender;
+//	}
+//
+//	public void setGender(String gender) {
+//		this.gender = gender;
+//	}
 }
