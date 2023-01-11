@@ -22,7 +22,7 @@ public class UserController {
 	
 	// display list of users
 	@GetMapping("/")
-	public String viewcustomersPage(Model model) {
+	public String viewCustomersPage(Model model) {
 		return "index";
 	}
 
@@ -31,12 +31,12 @@ public class UserController {
 		return findPaginated(1, "firstName", "asc", model);
 	}
 
-	@GetMapping("/Register")
+	@GetMapping("/create")
 	public String showNewUserForm(Model model) {
 		// create model attribute to bind form data
 		User user = new User();
 		model.addAttribute("user", user);
-		return "admin/customers/Register";
+		return "admin/customers/create";
 	}
 	
 	@PostMapping("/saveUser")
@@ -61,7 +61,7 @@ public class UserController {
 		
 		// set user as a model attribute to pre-populate the form
 		model.addAttribute("user", user);
-		return "admin/customers/update_profile";
+		return "admin/customers/edit";
 	}
 	
 	@GetMapping("/deleteUser/{id}")
@@ -109,6 +109,6 @@ public class UserController {
 		}
 		User user = new User();
 		model.addAttribute("user", user);
-		return "admin/customers/Register";
+		return "admin/customers/create";
 	}
 }
