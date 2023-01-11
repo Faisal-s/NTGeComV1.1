@@ -23,6 +23,10 @@ public class CategoryServiceImpl implements CategoryService{
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
+
     @Override
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
@@ -47,6 +51,19 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public void deleteCategoryById(long id) {
+        List<Product> products = this.productRepository.findAll();
+
+        Long long1 = new Long(id);
+        for (Product product : products){
+
+            if (product.getCategoryId() != null){
+                Long long2 = new Long(product.getCategoryId().getId());
+                if(long1.equals(long2)){
+                    return;
+                }
+            }
+
+        }
         this.categoryRepository.deleteById(id);
     }
 
