@@ -1,6 +1,8 @@
 package net.javaguides.springboot.admin.dashboard.controller;
 
 
+import net.javaguides.springboot.admin.customers.model.Customer;
+import net.javaguides.springboot.admin.customers.service.CustomerService;
 import net.javaguides.springboot.admin.users.model.User;
 import net.javaguides.springboot.admin.products.model.Product;
 import net.javaguides.springboot.admin.products.service.ProductService;
@@ -20,7 +22,7 @@ public class Dashboard {
     private ProductService productService;
 
     @Autowired
-    private UserService userService;
+    private CustomerService customerService;
 
     @GetMapping("/dashboard")
     public String showDashBoard(ModelMap model) {
@@ -29,10 +31,10 @@ public class Dashboard {
 
         double totalProductsValue = products.stream().filter(Objects::nonNull).mapToDouble(Product::getPrice).sum();
 
-        List<User> users = userService.getAllUsers();
+        List<Customer> customer = customerService.getAllCustomers();
 
         model.addAttribute("product", products);
-        model.addAttribute("user", users);
+        model.addAttribute("customer", customer);
         model.addAttribute("totalValue", totalProductsValue);
 
 
