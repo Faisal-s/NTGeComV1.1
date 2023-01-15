@@ -20,4 +20,9 @@ public class adminRoute {
 //        model.addAttribute("product", product);
 //        return "products/create";
 //    }
+
+    @GetMapping("/")
+    public String viewCustomersPage(Model model) {
+        return "index";
+    }
 }

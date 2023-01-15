@@ -20,75 +20,78 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	// display list of users
-	@GetMapping("/")
-	public String viewCustomersPage(Model model) {
-		return "index";
-	}
+//	// display list of users
+//	@GetMapping("/")
+//	public String viewCustomersPage(Model model) {
+//		return "index";
+//	}
+//
+//	@GetMapping("/customers")
+//	public String customersPage(Model model ){
+//		return findPaginated(1, "firstName", "asc", model);
+//	}
 
-	@GetMapping("/customers")
-	public String customersPage(Model model ){
-		return findPaginated(1, "firstName", "asc", model);
-	}
+//	@GetMapping("/create")
+//	public String showNewUserForm(Model model) {
+//		// create model attribute to bind form data
+//		User user = new User();
+//		model.addAttribute("user", user);
+//		return "admin/customers/create";
+//	}
 
-	@GetMapping("/create")
-	public String showNewUserForm(Model model) {
+	@GetMapping("/register")
+	public String registerForm(Model model) {
 		// create model attribute to bind form data
 		User user = new User();
 		model.addAttribute("user", user);
-		return "admin/customers/create";
+		return "create";
 	}
 	
-	@PostMapping("/saveUser")
+	@PostMapping("/registerUser")
 	public String saveUser(@ModelAttribute("user") User user) {
 		// save user to database
 		userService.saveUser(user);
 		return "redirect:/login";
 	}
 
-	@PostMapping("/saveUser1")
-	public String saveUser1(@ModelAttribute("user") User user) {
-		// save user to database
-		userService.saveUser(user);
-		return "redirect:/customers";
-	}
-	
-	@GetMapping("/showFormForUpdate/{id}")
-	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
-		
-		// get user from the service
-		User user = userService.getUserById(id);
-		
-		// set user as a model attribute to pre-populate the form
-		model.addAttribute("user", user);
-		return "admin/customers/edit";
-	}
-	
-	@GetMapping("/deleteUser/{id}")
-	public String deleteUser(@PathVariable (value = "id") long id) {
-		
-		// call delete user method
-		this.userService.deleteUserById(id);
-		return "redirect:/customers";
-	}
 
-	@GetMapping("/page/{pageNo}")
-	public String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
-			@RequestParam("sortField") String sortField,
-			@RequestParam("sortDir") String sortDir,
-			Model model) {
-		int pageSize = 5;
-		Page<User> page = userService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<User> user = page.getContent();
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-		model.addAttribute("listEmployees", user);
-		return "admin/customers/index";
-	}
+	
+//	@GetMapping("/users/edit/{id}")
+//	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
+//
+//		// get user from the service
+//		User user = userService.getUserById(id);
+//
+//		// set user as a model attribute to pre-populate the form
+//		model.addAttribute("user", user);
+//		return "admin/customers/edit";
+//	}
+	
+//	@GetMapping("/deleteUser/{id}")
+//	public String deleteUser(@PathVariable (value = "id") long id) {
+//
+//		// call delete user method
+//		this.userService.deleteUserById(id);
+//		return "redirect:/customers";
+//	}
+
+//	@GetMapping("/page/{pageNo}")
+//	public String findPaginated(@PathVariable (value = "pageNo") int pageNo,
+//			@RequestParam("sortField") String sortField,
+//			@RequestParam("sortDir") String sortDir,
+//			Model model) {
+//		int pageSize = 5;
+//		Page<User> page = userService.findPaginated(pageNo, pageSize, sortField, sortDir);
+//		List<User> user = page.getContent();
+//		model.addAttribute("currentPage", pageNo);
+//		model.addAttribute("totalPages", page.getTotalPages());
+//		model.addAttribute("totalItems", page.getTotalElements());
+//		model.addAttribute("sortField", sortField);
+//		model.addAttribute("sortDir", sortDir);
+//		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+//		model.addAttribute("listEmployees", user);
+//		return "admin/customers/index";
+//	}
 
 	@GetMapping("/login")
 	public String showLoginForm(Model model) {
