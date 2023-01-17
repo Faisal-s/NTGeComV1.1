@@ -53,17 +53,7 @@ public class CategoryServiceImpl implements CategoryService{
     public void deleteCategoryById(long id) {
         List<Product> products = this.productRepository.findAll();
 
-        Long long1 = new Long(id);
-        for (Product product : products){
 
-            if (product.getCategoryId() != null){
-                Long long2 = new Long(product.getCategoryId().getId());
-                if(long1.equals(long2)){
-                    return;
-                }
-            }
-
-        }
         this.categoryRepository.deleteById(id);
     }
 
