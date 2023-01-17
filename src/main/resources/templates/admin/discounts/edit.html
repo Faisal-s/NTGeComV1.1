@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+    <hr>
+    <h2>Update Customer</h2>
+    <form action="#" th:action="@{/saveDiscount}" th:object="${discount}"
+          method="POST">
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+
+        <input type="text" th:field="*{discount_name}" class="form-control mb-4 col-4">
+
+        <input type="number" th:field="*{discount_amount}" class="form-control mb-4 col-4">
+        <h6>from Date </h6>
+        <input class="form-control mb-4 col-4" th:field="*{from}" th:value="${#dates.format(from, 'yyyy-MM-dd')}" type="date">
+
+        <h6>To Date </h6>
+        <input class="form-control mb-4 col-4" th:field="*{to_date}"  th:value="${#dates.format(to_date, 'yyyy-MM-dd')}" type="date">
+
+
+        <button type="submit" class="btn btn-info col-2"> Update discount</button>
+    </form>
+    <hr>
+    <a th:href = "@{/discounts}"> Back to Customer List</a>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Discount</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/saveDiscount}" th:object="${discount}" method="POST">
+
+    <h6>Discount Name</h6>
+    <input class="form-control mb-4 col-4" th:field="*{discount_name}" type="text">
+
+
+    <h6>Discount Amount</h6>
+    <input class="form-control mb-4 col-4" th:field="*{discount_amount}" type="number">
+
+
+
+    <h6>Active </h6>
+     <select th:field="*{active}" class="btn btn-outline-info">
+        <option value="">Select a category</option>
+        <option value="true">Active</option>
+        <option value="false">Not Active</option>
+
+     </select>
+
+    <h6>From date </h6>
+    <input class="form-control mb-4 col-4" th:field="*{from}" th:value="${#dates.format(from, 'yyyy-MM-dd')}" type="date">
+
+    <h6>To Date </h6>
+    <input class="form-control mb-4 col-4" th:field="*{to_date}"  th:value="${#dates.format(to_date, 'yyyy-MM-dd')}" type="date">
+
+
+
+
+
+
+    <br class="mb-4">
+    <button type="submit" class="btn btn-info col-2"> Save Product</button>
+</form>
+</body>
+</html>
