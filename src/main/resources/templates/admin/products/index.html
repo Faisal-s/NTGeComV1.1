@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/main}">
 <head>
     <meta charset="ISO-8859-1">
     <title>Products</title>
@@ -10,111 +12,70 @@
           crossorigin="anonymous">
 </head>
 <body class="body">
-<div class="container my-2">
-    <header class="primary-header flex">
-        <div class="logo">
-            <img src="assets/logo.png" alt="">
-        </div>
-        <button class="mobile-nav-toggle"
-                aria-controls="primary-navigation" aria-expanded="false">
-            <span class="sr-only">Menu</span></button>
-        <nav class="a-remove-underlined">
-            <ul id="primary-navigation" data-visible="false"
-                class="primary-navigation uppercase letter-spacing-2 fs-300 flex">
-                <li>
-                    <a href="/dashboard">Dashboard</a>
-                </li>
-                <li>
-                    <a href="/products" class="current-page">Products</a>
-                </li>
-                <li>
-                    <a href="/admin/category">Categories</a>
-                </li>
-                <li>
-                    <a href="/customers">Customers</a>
-                </li>
-                <li>
-                    <a href="/discounts">Discounts</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <h1>Products List</h1>
-    <a th:href = "@{/products/create}" class="btn btn-info btn-sm mb-3 mt-3"> Add Product </a>
-    <table border="1" class = "table table-striped table-responsive-md">
-        <thead>
-        <tr>
-            <th>
-                <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
-                    Name</a>
-            </th>
-            <th>
-                <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=description&sortDir=' + ${reverseSortDir}}">
-                    Description</a>
-            </th>
-            <th>
-                <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=price&sortDir=' + ${reverseSortDir}}">
-                    Price</a>
-            </th>
-            <th>
-                <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=cost&sortDir=' + ${reverseSortDir}}">
-                    Cost</a>
-            </th>
-            <th>
-                <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=sku&sortDir=' + ${reverseSortDir}}">
-                    SKU</a>
-            </th>
+    <div layout:fragment="content">
+        <h1>Products List</h1>
+        <a th:href = "@{/products/create}" class="btn btn-info btn-sm mb-3 mt-3"> Add Product </a>
+        <table border="1" class = "table table-striped table-responsive-md">
+            <thead>
+            <tr>
+                <th>
+                    <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+                        Name</a>
+                </th>
+                <th>
+                    <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=description&sortDir=' + ${reverseSortDir}}">
+                        Description</a>
+                </th>
+                <th>
+                    <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=price&sortDir=' + ${reverseSortDir}}">
+                        Price</a>
+                </th>
+                <th>
+                    <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=cost&sortDir=' + ${reverseSortDir}}">
+                        Cost</a>
+                </th>
+                <th>
+                    <a style="color: #17a2b8;" th:href="@{'/products/page/' + ${currentPage} + '?sortField=sku&sortDir=' + ${reverseSortDir}}">
+                        SKU</a>
+                </th>
+                <th> Actions </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${listProducts}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.cost}"></td>
+                <td th:text="${product.sku}"></td>
+                <td> <a th:href="@{/products//showFormForUpdateProduct/{id}(id=${product.id})}" class="btn btn-outline-info">Update</a>
+                    <a th:href="@{/products/deleteProduct/{id}(id=${product.id})}" class="btn btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:if = "${totalPages > 1}">
+            <div class = "row col-sm-10">
+                <div class = "col-sm-2">
+                    Total Rows: [[${totalItems}]]
+                </div>
+                <div class = "col-sm-1">
+                        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                            <a th:if="${currentPage != i}" th:href="@{'/products/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                            <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+                        </span>
+                </div>
+                <div class = "col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/products/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                    <span th:unless="${currentPage < totalPages}">Next</span>
+                </div>
 
-            <th> Actions </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="product : ${listProducts}">
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.description}"></td>
-            <td th:text="${product.price}"></td>
-            <td th:text="${product.cost}"></td>
-            <td th:text="${product.sku}"></td>
-            <td> <a th:href="@{/products//showFormForUpdateProduct/{id}(id=${product.id})}" class="btn btn-outline-info">Update</a>
-                <a th:href="@{/products/deleteProduct/{id}(id=${product.id})}" class="btn btn-outline-danger">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <div th:if = "${totalPages > 1}">
-        <div class = "row col-sm-10">
-            <div class = "col-sm-2">
-                Total Rows: [[${totalItems}]]
-            </div>
-            <div class = "col-sm-1">
-					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-						<a th:if="${currentPage != i}" th:href="@{'/products/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
-					</span>
-            </div>
-            <div class = "col-sm-1">
-                <a th:if="${currentPage < totalPages}" th:href="@{'/products/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
-                <span th:unless="${currentPage < totalPages}">Next</span>
-            </div>
-
-            <div class="col-sm-1">
-                <a th:if="${currentPage < totalPages}" th:href="@{'/products/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
-                <span th:unless="${currentPage < totalPages}">Last</span>
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/products/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                    <span th:unless="${currentPage < totalPages}">Last</span>
+                </div>
             </div>
         </div>
     </div>
-    <footer>
-        <div class = "footer-container flex">
-            <div class="copyright">
-                Copyright Reserved by NTG - 2022
-            </div>
-            <!--				<ul class="social">-->
-            <!--					<li><a href="/"><i class='bx bxl-twitter'></i></li>-->
-            <!--					<li><a href="/"><i class='bx bxl-linkedin-square'></i></li>-->
-            <!--				</ul>-->
-        </div>
-    </footer>
-</div>
 </body>
 </html>

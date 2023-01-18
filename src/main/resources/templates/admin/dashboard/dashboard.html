@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"  >
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/main}">
 <head>
   <meta charset="ISO-8859-1">
   <title> Management System</title>
@@ -12,85 +15,42 @@
     crossorigin="anonymous">
 </head>
 <body class="body">
-<div class="container my-2">
-  <header class="primary-header flex">
-    <div class="logo">
-      <img src="assets/logo.png" alt="">
-    </div>
-    <button class="mobile-nav-toggle"
-            aria-controls="primary-navigation" aria-expanded="false">
-      <span class="sr-only">Menu</span></button>
-    <nav class="a-remove-underlined">
-      <ul id="primary-navigation" data-visible="false"
-          class="primary-navigation uppercase letter-spacing-2 fs-300 flex">
-        <li>
-          <a href="/dashboard" class="current-page">Dashboard</a>
-        </li>
-        <li>
-          <a href="/products">Products</a>
-        </li>
-        <li>
-          <a href="/admin/category">Categories</a>
-        </li>
-        <li>
-          <a href="/customers">Customers</a>
-        </li>
-        <li>
-          <a href="/discounts">Discounts</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <div class="row mt-5" style="justify-content: center">
-    <div class="card border-info mb-3 mr-3" style="width: 20rem;">
-      <div class="card-header" style="color: #17a2b8;">Total Customers</div>
-      <div class="card-body">
-        <h5 class="card-title"th:text="*{customer.size()}" style="color: #17a2b8;">0+</h5>
+  <div layout:fragment="content">
+    <div class="row mt-5" style="justify-content: center">
+      <div class="card border-info mb-3 mr-3" style="width: 20rem;">
+        <div class="card-header" style="color: #17a2b8;">Total Customers</div>
+        <div class="card-body">
+          <h5 class="card-title"th:text="*{customer.size()}" style="color: #17a2b8;">0+</h5>
+        </div>
+      </div>
+      <div class="card border-info mb-3 mr-3" style="width: 20rem;">
+        <div class="card-header" style="color: #17a2b8;">Total Products</div>
+        <div class="card-body">
+          <h5 class="card-title" th:text="*{product.size()}" style="color: #17a2b8;">0+</h5>
+        </div>
+      </div>
+      <div class="card border-info mb-3 mr-3" style="width: 20rem;">
+        <div class="card-header" style="color: #17a2b8;">Total value</div>
+        <div class="card-body">
+          <h5 class="card-title" th:text="*{totalValue}" style="color: #17a2b8;">0+</h5>
+        </div>
       </div>
     </div>
-    <div class="card border-info mb-3 mr-3" style="width: 20rem;">
-      <div class="card-header" style="color: #17a2b8;">Total Products</div>
-      <div class="card-body">
-        <h5 class="card-title" th:text="*{product.size()}" style="color: #17a2b8;">0+</h5>
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <h3 style="color: #17a2b8">Distribution based on city </h3>
+        <canvas id="myChartPie" style="width:100%;max-width:600px"></canvas>
+      </div>
+      <div class="col-md-6">
+        <h3 style="color: #17a2b8">Distribution based on gender </h3>
+        <canvas id="myChartPri" style="width:100%;max-width:600px"></canvas>
       </div>
     </div>
-    <div class="card border-info mb-3 mr-3" style="width: 20rem;">
-      <div class="card-header" style="color: #17a2b8;">Total value</div>
-      <div class="card-body">
-        <h5 class="card-title" th:text="*{totalValue}" style="color: #17a2b8;">0+</h5>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row mt-5">
-    <div class="col-md-6">
-      <h3 style="color: #17a2b8">Distribution based on city </h3>
-      <canvas id="myChartPie" style="width:100%;max-width:600px"></canvas>
-    </div>
-
-    <div class="col-md-6">
-      <h3 style="color: #17a2b8">Distribution based on gender </h3>
-      <canvas id="myChartPri" style="width:100%;max-width:600px"></canvas>
+    <div class="col-md-12 mt-5">
+      <h3 style="color: #17a2b8" class="mb-3">Sales </h3>
+      <canvas id="myChart1"></canvas>
     </div>
   </div>
-  <div class="col-md-12 mt-5">
-    <h3 style="color: #17a2b8" class="mb-3">Sales </h3>
-    <canvas id="myChart1"  ></canvas>
-  </div>
-  <footer>
-    <div class = "footer-container flex">
-      <div class="copyright">
-        Copyright Reserved by NTG - 2022
-      </div>
-      <!--				<ul class="social">-->
-      <!--					<li><a href="/"><i class='bx bxl-twitter'></i></li>-->
-      <!--					<li><a href="/"><i class='bx bxl-linkedin-square'></i></li>-->
-      <!--				</ul>-->
-    </div>
-  </footer>
-</div>
 
 <script>
   var xValues = ["male", "female"];
@@ -212,5 +172,6 @@
     }
   });
 </script>
+<script th:src="@{../../../static/javascript/navActiveLink.js}"></script>
 </body>
 </html>

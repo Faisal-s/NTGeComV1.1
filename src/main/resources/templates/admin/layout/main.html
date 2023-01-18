@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout</title>
+    <link th:href="@{/css/main.css}" type="text/css" rel="stylesheet" href="@{/css/main.css}"/>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div class="container my-2">
+        <header class="primary-header flex">
+            <div class="logo">
+                <img src="assets/logo.png" alt="">
+            </div>
+            <button class="mobile-nav-toggle"
+                    aria-controls="primary-navigation" aria-expanded="false">
+                <span class="sr-only">Menu</span></button>
+            <nav class="a-remove-underlined">
+                <ul id="primary-navigation" data-visible="false"
+                    class="primary-navigation uppercase letter-spacing-2 fs-300 flex">
+                    <li>
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/products">Products</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/admin/category">Categories</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/customers">Customers</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/discounts">Discounts</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div layout:fragment="content">
+            <p>Changing contents</p>
+        </div>
+        <footer>
+            <div class = "footer-container flex">
+                <div class="copyright">
+                    Copyright Reserved by NTG - 2022
+                </div>
+                <!--				<ul class="social">-->
+                <!--					<li><a href="/"><i class='bx bxl-twitter'></i></li>-->
+                <!--					<li><a href="/"><i class='bx bxl-linkedin-square'></i></li>-->
+                <!--				</ul>-->
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
